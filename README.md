@@ -25,7 +25,7 @@
 <br/>
 
 ### 3. 시연 영상
-[![Video Label]](https://www.youtube.com/shorts/Kj_wo4fQtwI)
+[![Video Label](https://i9.ytimg.com/vi/Kj_wo4fQtwI/mqdefault.jpg?sqp=CMCH27cG-oaymwEoCMACELQB8quKqQMcGADwAQH4AYwCgALgA4oCDAgAEAEYciBaKDswDw==&rs=AOn4CLB-jemeWmMWzKxFEmJ1QR52WolSyA)](https://www.youtube.com/shorts/Kj_wo4fQtwI)
 <br/>
 
 ### 4. 사용 기술
