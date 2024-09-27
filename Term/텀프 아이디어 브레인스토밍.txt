@@ -1,0 +1,29 @@
+내 꺼
+압력센서를 이용한 펀칭 머신 / 점수를 tft lcd로 표시 및 블루투스로 기록, db와 조회해 전세계의 사람들과 점수를 겨룰수 있음.
+https://www.devicemart.co.kr/goods/view?no=33868 - 압력센서
+
+먼지 농도를 분석하여 자동으로 돌아가는 환기팬 / 블루투스를 이용해 폰으로 혹은 tft lcd를 통해 현재 대기질 분석결과 알려줌 / 사람이 있는 것/외부환경을 조도 센서로 분석(빛으로), 환기 구멍을 열거나 닫음
+https://www.devicemart.co.kr/goods/view?no=13918160 - 공기질 센서
+https://www.devicemart.co.kr/goods/view?no=12546910 - 습도 센서
+https://www.devicemart.co.kr/goods/view?no=11364 - CdS/빛 센서
+https://www.devicemart.co.kr/goods/view?no=12505175 - 모터 -> 작동여부만 보여주는 것
+
+광훈씨 꺼
+https://summer-horn-27c.notion.site/bbc0ece09b7b4a56a8e2fa6b51c93c41 - 정리본
+냉장고 정보관리 시스템
+냉장고 문을 열지 않고도, 또는 집 밖에서도 냉장고의 내부 온도와 비어있는 구역을 알 수 있도록 하자!
+https://www.devicemart.co.kr/goods/view?no=1360976 - 무게 센서
+https://www.devicemart.co.kr/goods/view?no=1279338 - 시리얼 와이파이
+https://www.devicemart.co.kr/goods/view?no=1065878 - 온도 모듈
+
+준혁씨 꺼
+자율주행 자동차 - 직접 조작 및 초음파 센서를 사용한 자율주행
+
+지원씨 거
+RC카 개념 - 카메라 이용한 탐사차
+스마트 가습기
+
+=> RC카 당첨
+
+카메라 송출기능
+조작 / 자율주행

@@ -1,0 +1,423 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V8.22.1.15669/W32 for ARM       20/Nov/2023  19:54:12
+# Copyright 1999-2018 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  C:\Users\pnu10\Documents\project_test\user\main.c
+#    Command line =  
+#        -f C:\Users\pnu10\AppData\Local\Temp\EW1AF8.tmp
+#        (C:\Users\pnu10\Documents\project_test\user\main.c -D
+#        USE_STDPERIPH_DRIVER -D STM32F10X_CL -lC
+#        C:\Users\pnu10\Documents\project_test\Debug\List -o
+#        C:\Users\pnu10\Documents\project_test\Debug\Obj --no_cse --no_unroll
+#        --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling
+#        --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\pnu10\Documents\project_test\libraries\CMSIS\DeviceSupport\
+#        -I
+#        C:\Users\pnu10\Documents\project_test\libraries\CMSIS\DeviceSupport\Startup\
+#        -I
+#        C:\Users\pnu10\Documents\project_test\libraries\STM32F10x_StdPeriph_Driver_v3.5\inc\
+#        -I
+#        C:\Users\pnu10\Documents\project_test\libraries\STM32F10x_StdPeriph_Driver_v3.5\src\
+#        -I C:\Users\pnu10\Documents\project_test\user\ -I
+#        C:\Users\pnu10\Documents\project_test\user\inc\ -I
+#        C:\Users\pnu10\Documents\project_test\libraries\LCD\ -Ol -I
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\CMSIS\Core\Include\" -I "C:\Program Files (x86)\IAR
+#        Systems\Embedded Workbench 8.0\arm\CMSIS\DSP\Include\")
+#    Locale       =  C
+#    List file    =  C:\Users\pnu10\Documents\project_test\Debug\List\main.lst
+#    Object file  =  C:\Users\pnu10\Documents\project_test\Debug\Obj\main.o
+#
+###############################################################################
+
+C:\Users\pnu10\Documents\project_test\user\main.c
+      1          #include "stm32f10x.h"
+      2          #include "core_cm3.h"
+      3          #include "misc.h"
+      4          #include "stm32f10x_gpio.h"
+      5          #include "stm32f10x_rcc.h"
+      6          #include "stm32f10x_usart.h"
+      7          #include "stm32f10x_adc.h"
+      8          #include "stm32f10x_tim.h"
+      9          #include "lcd.h"
+     10          #include "touch.h"
+     11          
+
+   \                                 In section .bss, align 4
+     12          volatile uint32_t ADC_Value[1];
+   \                     ADC_Value:
+   \   00000000                      DS8 4
+     13          
+
+   \                                 In section .text, align 2, keep-with-next
+     14          void RCC_Configure(void)
+     15          {  
+   \                     RCC_Configure: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     16              // TODO: Enable the APB2 peripheral clock using the function 'RCC_APB2PeriphClockCmd'
+     17          	
+     18          	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+   \   00000002   0x2101             MOVS     R1,#+1
+   \   00000004   0x2004             MOVS     R0,#+4
+   \   00000006   0x.... 0x....      BL       RCC_APB2PeriphClockCmd
+     19                  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+   \   0000000A   0x2101             MOVS     R1,#+1
+   \   0000000C   0x2001             MOVS     R0,#+1
+   \   0000000E   0x.... 0x....      BL       RCC_AHBPeriphClockCmd
+     20                  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+   \   00000012   0x2101             MOVS     R1,#+1
+   \   00000014   0xF44F 0x7000      MOV      R0,#+512
+   \   00000018   0x.... 0x....      BL       RCC_APB2PeriphClockCmd
+     21                  RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+   \   0000001C   0x2101             MOVS     R1,#+1
+   \   0000001E   0x2001             MOVS     R0,#+1
+   \   00000020   0x.... 0x....      BL       RCC_APB2PeriphClockCmd
+     22          }
+   \   00000024   0xBD01             POP      {R0,PC}          ;; return
+     23          
+
+   \                                 In section .text, align 2, keep-with-next
+     24          void GPIO_Configure(void)
+     25          {
+   \                     GPIO_Configure: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     26              GPIO_InitTypeDef GPIO_InitStructure;
+     27                 
+     28              GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+   \   00000002   0x2001             MOVS     R0,#+1
+   \   00000004   0xF8AD 0x0000      STRH     R0,[SP, #+0]
+     29              GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+   \   00000008   0x2003             MOVS     R0,#+3
+   \   0000000A   0xF88D 0x0002      STRB     R0,[SP, #+2]
+     30              GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+   \   0000000E   0x2000             MOVS     R0,#+0
+   \   00000010   0xF88D 0x0003      STRB     R0,[SP, #+3]
+     31              GPIO_Init(GPIOC, &GPIO_InitStructure);
+   \   00000014   0x4669             MOV      R1,SP
+   \   00000016   0x....             LDR.N    R0,??DataTable5  ;; 0x40011000
+   \   00000018   0x.... 0x....      BL       GPIO_Init
+     32            // TODO: Initialize the GPIO pins using the structure 'GPIO_InitTypeDef' and the function 'GPIO_Init'
+     33          }
+   \   0000001C   0xBD01             POP      {R0,PC}          ;; return
+     34          
+
+   \                                 In section .text, align 2, keep-with-next
+     35          void DMA_Configure(void) 
+     36          {
+   \                     DMA_Configure: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+   \   00000002   0xB08B             SUB      SP,SP,#+44
+     37            DMA_InitTypeDef DMA_InitStructure;
+     38            DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&ADC1->DR;
+   \   00000004   0x....             LDR.N    R0,??DataTable5_1  ;; 0x4001244c
+   \   00000006   0x9000             STR      R0,[SP, #+0]
+     39            DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)&ADC_Value[0];
+   \   00000008   0x....             LDR.N    R0,??DataTable5_2
+   \   0000000A   0x9001             STR      R0,[SP, #+4]
+     40            DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+   \   0000000C   0x2000             MOVS     R0,#+0
+   \   0000000E   0x9002             STR      R0,[SP, #+8]
+     41            DMA_InitStructure.DMA_BufferSize = 1;
+   \   00000010   0x2001             MOVS     R0,#+1
+   \   00000012   0x9003             STR      R0,[SP, #+12]
+     42            DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+   \   00000014   0x2000             MOVS     R0,#+0
+   \   00000016   0x9004             STR      R0,[SP, #+16]
+     43            DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Disable;
+   \   00000018   0x2000             MOVS     R0,#+0
+   \   0000001A   0x9005             STR      R0,[SP, #+20]
+     44            DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
+   \   0000001C   0xF44F 0x7000      MOV      R0,#+512
+   \   00000020   0x9006             STR      R0,[SP, #+24]
+     45            DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+   \   00000022   0xF44F 0x6000      MOV      R0,#+2048
+   \   00000026   0x9007             STR      R0,[SP, #+28]
+     46            DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+   \   00000028   0x2020             MOVS     R0,#+32
+   \   0000002A   0x9008             STR      R0,[SP, #+32]
+     47            DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+   \   0000002C   0xF44F 0x5040      MOV      R0,#+12288
+   \   00000030   0x9009             STR      R0,[SP, #+36]
+     48            DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+   \   00000032   0x2000             MOVS     R0,#+0
+   \   00000034   0x900A             STR      R0,[SP, #+40]
+     49            DMA_Init(DMA1_Channel1, &DMA_InitStructure);
+   \   00000036   0x4669             MOV      R1,SP
+   \   00000038   0x....             LDR.N    R0,??DataTable5_3  ;; 0x40020008
+   \   0000003A   0x.... 0x....      BL       DMA_Init
+     50            DMA_Cmd(DMA1_Channel1, ENABLE);
+   \   0000003E   0x2101             MOVS     R1,#+1
+   \   00000040   0x....             LDR.N    R0,??DataTable5_3  ;; 0x40020008
+   \   00000042   0x.... 0x....      BL       DMA_Cmd
+     51          }
+   \   00000046   0xB00B             ADD      SP,SP,#+44
+   \   00000048   0xBD00             POP      {PC}             ;; return
+     52          
+
+   \                                 In section .text, align 2, keep-with-next
+     53          void ADC_Configure(void) {
+   \                     ADC_Configure: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+   \   00000002   0xB085             SUB      SP,SP,#+20
+     54              ADC_InitTypeDef ADC_InitStructure;
+     55              ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+   \   00000004   0x2000             MOVS     R0,#+0
+   \   00000006   0x9000             STR      R0,[SP, #+0]
+     56              ADC_InitStructure.ADC_ScanConvMode = DISABLE;
+   \   00000008   0x2000             MOVS     R0,#+0
+   \   0000000A   0xF88D 0x0004      STRB     R0,[SP, #+4]
+     57              ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+   \   0000000E   0x2001             MOVS     R0,#+1
+   \   00000010   0xF88D 0x0005      STRB     R0,[SP, #+5]
+     58              ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+   \   00000014   0xF45F 0x2060      MOVS     R0,#+917504
+   \   00000018   0x9002             STR      R0,[SP, #+8]
+     59              ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+   \   0000001A   0x2000             MOVS     R0,#+0
+   \   0000001C   0x9003             STR      R0,[SP, #+12]
+     60              ADC_InitStructure.ADC_NbrOfChannel = 1;
+   \   0000001E   0x2001             MOVS     R0,#+1
+   \   00000020   0xF88D 0x0010      STRB     R0,[SP, #+16]
+     61              ADC_Init(ADC1, &ADC_InitStructure);
+   \   00000024   0x4669             MOV      R1,SP
+   \   00000026   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000028   0x.... 0x....      BL       ADC_Init
+     62              
+     63              ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_239Cycles5);
+   \   0000002C   0x2307             MOVS     R3,#+7
+   \   0000002E   0x2201             MOVS     R2,#+1
+   \   00000030   0x210A             MOVS     R1,#+10
+   \   00000032   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000034   0x.... 0x....      BL       ADC_RegularChannelConfig
+     64          
+     65              ADC_Cmd(ADC1, ENABLE);
+   \   00000038   0x2101             MOVS     R1,#+1
+   \   0000003A   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   0000003C   0x.... 0x....      BL       ADC_Cmd
+     66          
+     67              ADC_ResetCalibration(ADC1);
+   \   00000040   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000042   0x.... 0x....      BL       ADC_ResetCalibration
+     68          
+     69              while(ADC_GetResetCalibrationStatus(ADC1)) ;
+   \                     ??ADC_Configure_0: (+1)
+   \   00000046   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000048   0x.... 0x....      BL       ADC_GetResetCalibrationStatus
+   \   0000004C   0x2800             CMP      R0,#+0
+   \   0000004E   0xD1FA             BNE.N    ??ADC_Configure_0
+     70          
+     71              ADC_StartCalibration(ADC1);
+   \   00000050   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000052   0x.... 0x....      BL       ADC_StartCalibration
+     72          
+     73              while(ADC_GetCalibrationStatus(ADC1)) ;
+   \                     ??ADC_Configure_1: (+1)
+   \   00000056   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000058   0x.... 0x....      BL       ADC_GetCalibrationStatus
+   \   0000005C   0x2800             CMP      R0,#+0
+   \   0000005E   0xD1FA             BNE.N    ??ADC_Configure_1
+     74          
+     75              ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+   \   00000060   0x2101             MOVS     R1,#+1
+   \   00000062   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   00000064   0x.... 0x....      BL       ADC_SoftwareStartConvCmd
+     76              
+     77              ADC_DMACmd(ADC1, ENABLE);
+   \   00000068   0x2101             MOVS     R1,#+1
+   \   0000006A   0x....             LDR.N    R0,??DataTable5_4  ;; 0x40012400
+   \   0000006C   0x.... 0x....      BL       ADC_DMACmd
+     78          }
+   \   00000070   0xB005             ADD      SP,SP,#+20
+   \   00000072   0xBD00             POP      {PC}             ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+     79          void delay() {
+     80            for(int i = 0; i < 1000000; i++) {}
+   \                     delay: (+1)
+   \   00000000   0x2000             MOVS     R0,#+0
+   \   00000002   0xE000             B.N      ??delay_0
+   \                     ??delay_1: (+1)
+   \   00000004   0x1C40             ADDS     R0,R0,#+1
+   \                     ??delay_0: (+1)
+   \   00000006   0x....             LDR.N    R1,??DataTable5_5  ;; 0xf4240
+   \   00000008   0x4288             CMP      R0,R1
+   \   0000000A   0xDBFB             BLT.N    ??delay_1
+     81          }
+   \   0000000C   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 2, keep-with-next
+     82          int main() {
+   \                     main: (+1)
+   \   00000000   0xB5E0             PUSH     {R5-R7,LR}
+     83              // LCD @@ @@@ LCD_Init@ @@@@ @@@@ @@@ @ @@ @@
+     84              SystemInit();
+   \   00000002   0x.... 0x....      BL       SystemInit
+     85              RCC_Configure();
+   \   00000006   0x.... 0x....      BL       RCC_Configure
+     86              GPIO_Configure();
+   \   0000000A   0x.... 0x....      BL       GPIO_Configure
+     87              ADC_Configure();
+   \   0000000E   0x.... 0x....      BL       ADC_Configure
+     88              DMA_Configure();
+   \   00000012   0x.... 0x....      BL       DMA_Configure
+     89              // ------------------------------------
+     90              LCD_Init();
+   \   00000016   0x.... 0x....      BL       LCD_Init
+     91              Touch_Configuration();
+   \   0000001A   0x.... 0x....      BL       Touch_Configuration
+     92              LCD_Clear(WHITE);
+   \   0000001E   0xF64F 0x70FF      MOVW     R0,#+65535
+   \   00000022   0x.... 0x....      BL       LCD_Clear
+     93              
+     94              
+     95              uint16_t posX, posY;
+                              ^
+Warning[Pe177]: variable "posX" was declared but never referenced
+
+      uint16_t posX, posY;
+                     ^
+"C:\Users\pnu10\Documents\project_test\user\main.c",95  Warning[Pe177]: 
+          variable "posY" was declared but never referenced
+     96              
+     97                  
+     98              while(1){
+     99                if(ADC_Value[0] < 3400) {
+   \                     ??main_0: (+1)
+   \   00000026   0x....             LDR.N    R0,??DataTable5_2
+   \   00000028   0x6800             LDR      R0,[R0, #+0]
+   \   0000002A   0xF640 0x5148      MOVW     R1,#+3400
+   \   0000002E   0x4288             CMP      R0,R1
+   \   00000030   0xD311             BCC.N    ??main_1
+    100                  LCD_Clear(GRAY);
+    101                  LCD_ShowNum(40, 40, ADC_Value[0], 4 , RED, GRAY);
+    102                }
+    103                else {
+    104                  LCD_Clear(WHITE);
+   \                     ??main_2: (+1)
+   \   00000032   0xF64F 0x70FF      MOVW     R0,#+65535
+   \   00000036   0x.... 0x....      BL       LCD_Clear
+    105                  LCD_ShowNum(40, 40, ADC_Value[0], 4 , RED, WHITE);
+   \   0000003A   0xF64F 0x70FF      MOVW     R0,#+65535
+   \   0000003E   0x9001             STR      R0,[SP, #+4]
+   \   00000040   0xF44F 0x4078      MOV      R0,#+63488
+   \   00000044   0x9000             STR      R0,[SP, #+0]
+   \   00000046   0x2304             MOVS     R3,#+4
+   \   00000048   0x....             LDR.N    R0,??DataTable5_2
+   \   0000004A   0x6802             LDR      R2,[R0, #+0]
+   \   0000004C   0x2128             MOVS     R1,#+40
+   \   0000004E   0x2028             MOVS     R0,#+40
+   \   00000050   0x.... 0x....      BL       LCD_ShowNum
+   \   00000054   0xE010             B.N      ??main_3
+    106                }
+   \                     ??main_1: (+1)
+   \   00000056   0xF248 0x4030      MOVW     R0,#+33840
+   \   0000005A   0x.... 0x....      BL       LCD_Clear
+   \   0000005E   0xF248 0x4030      MOVW     R0,#+33840
+   \   00000062   0x9001             STR      R0,[SP, #+4]
+   \   00000064   0xF44F 0x4078      MOV      R0,#+63488
+   \   00000068   0x9000             STR      R0,[SP, #+0]
+   \   0000006A   0x2304             MOVS     R3,#+4
+   \   0000006C   0x....             LDR.N    R0,??DataTable5_2
+   \   0000006E   0x6802             LDR      R2,[R0, #+0]
+   \   00000070   0x2128             MOVS     R1,#+40
+   \   00000072   0x2028             MOVS     R0,#+40
+   \   00000074   0x.... 0x....      BL       LCD_ShowNum
+    107                delay();
+   \                     ??main_3: (+1)
+   \   00000078   0x.... 0x....      BL       delay
+   \   0000007C   0xE7D3             B.N      ??main_0
+    108              }
+    109          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   0x40011000         DC32     0x40011000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_1:
+   \   00000000   0x4001244C         DC32     0x4001244c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_2:
+   \   00000000   0x........         DC32     ADC_Value
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_3:
+   \   00000000   0x40020008         DC32     0x40020008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_4:
+   \   00000000   0x40012400         DC32     0x40012400
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable5_5:
+   \   00000000   0x000F4240         DC32     0xf4240
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      24   ADC_Configure
+        24   -> ADC_Cmd
+        24   -> ADC_DMACmd
+        24   -> ADC_GetCalibrationStatus
+        24   -> ADC_GetResetCalibrationStatus
+        24   -> ADC_Init
+        24   -> ADC_RegularChannelConfig
+        24   -> ADC_ResetCalibration
+        24   -> ADC_SoftwareStartConvCmd
+        24   -> ADC_StartCalibration
+      48   DMA_Configure
+        48   -> DMA_Cmd
+        48   -> DMA_Init
+       8   GPIO_Configure
+         8   -> GPIO_Init
+       8   RCC_Configure
+         8   -> RCC_AHBPeriphClockCmd
+         8   -> RCC_APB2PeriphClockCmd
+       0   delay
+      16   main
+        16   -> ADC_Configure
+        16   -> DMA_Configure
+        16   -> GPIO_Configure
+        16   -> LCD_Clear
+        16   -> LCD_Init
+        16   -> LCD_ShowNum
+        16   -> RCC_Configure
+        16   -> SystemInit
+        16   -> Touch_Configuration
+        16   -> delay
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable5
+       4  ??DataTable5_1
+       4  ??DataTable5_2
+       4  ??DataTable5_3
+       4  ??DataTable5_4
+       4  ??DataTable5_5
+     116  ADC_Configure
+       4  ADC_Value
+      74  DMA_Configure
+      30  GPIO_Configure
+      38  RCC_Configure
+      14  delay
+     126  main
+
+ 
+   4 bytes in section .bss
+ 422 bytes in section .text
+ 
+ 422 bytes of CODE memory
+   4 bytes of DATA memory
+
+Errors: none
+Warnings: 2
