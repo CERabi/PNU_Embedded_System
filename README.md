@@ -25,7 +25,7 @@
 <br/>
 
 ### 3. 시연 영상
-https://github.com/user-attachments/assets/1ff26393-b58c-4a52-9f95-71a3b26530f9
+[https://github.com/user-attachments/assets/1ff26393-b58c-4a52-9f95-71a3b26530f9]
 <br/>
 
 ### 4. 사용 기술
